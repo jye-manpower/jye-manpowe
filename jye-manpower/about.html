@@ -24,67 +24,69 @@
       display: flex;
       justify-content: center;
       overflow-x: auto;
+      padding-bottom: 40px;
     }
 
-    .tree-list,
-    .tree-list ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
+    .tree ul {
+      padding-top: 20px;
       position: relative;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .tree-list ul {
-      flex-direction: row;
       justify-content: center;
-      padding-top: 40px;
     }
 
-    .tree-list li {
-      position: relative;
-      padding: 20px 10px 0 10px;
+    .tree li {
+      list-style-type: none;
       text-align: center;
+      position: relative;
+      padding: 20px 5px 0 5px;
     }
 
-    .tree-list li::before,
-    .tree-list li::after {
+    /* Draw connectors */
+    .tree li::before,
+    .tree li::after {
       content: '';
       position: absolute;
       top: 0;
       width: 50%;
       height: 20px;
-      border-top: 3px solid #0051a3;
+      border-top: 2px solid #0051a3;
     }
 
-    .tree-list li::before {
+    .tree li::before {
       right: 50%;
-      border-right: 3px solid #0051a3;
+      border-right: 2px solid #0051a3;
     }
 
-    .tree-list li::after {
+    .tree li::after {
       left: 50%;
-      border-left: 3px solid #0051a3;
+      border-left: 2px solid #0051a3;
     }
 
-    .tree-list li:only-child::before,
-    .tree-list li:only-child::after {
+    .tree li:only-child::before,
+    .tree li:only-child::after {
       display: none;
     }
 
-    .tree-list li:only-child {
+    .tree li:only-child {
       padding-top: 0;
     }
 
-    .tree-list li:first-child::before,
-    .tree-list li:last-child::after {
+    .tree li:first-child::before,
+    .tree li:last-child::after {
       border: none;
     }
 
+    .tree ul ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid #0051a3;
+      height: 20px;
+    }
+
     .node {
-      background: white;
+      background: #ffffff;
       color: #002f6c;
       padding: 10px 15px;
       border: 2px solid #0051a3;
@@ -92,6 +94,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       font-weight: 600;
       min-width: 150px;
+      display: inline-block;
     }
 
     .node.small {
@@ -107,15 +110,27 @@
       margin-top: 4px;
     }
 
-    @media (max-width: 600px) {
-      .tree-list ul {
+    @media (max-width: 768px) {
+      .tree ul {
         flex-direction: column;
         align-items: center;
       }
 
-      .tree-list li::before,
-      .tree-list li::after {
+      .tree ul ul {
+        flex-direction: column;
+        padding-top: 0;
+      }
+
+      .tree li::before,
+      .tree li::after,
+      .tree ul ul::before {
         display: none;
+      }
+
+      .node {
+        width: 90%;
+        max-width: 300px;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -125,7 +140,7 @@
   <h2>Managerial Hierarchy</h2>
 
   <div class="tree">
-    <ul class="tree-list">
+    <ul>
       <li>
         <div class="node small">Mahendra Jadhav<br><small>Proprietor</small></div>
         <ul>
@@ -142,6 +157,9 @@
               <li><div class="node">Shankar Patil<br><small>Recruiter</small></div></li>
               <li><div class="node">Mahesh Bhoir<br><small>Payroll Officer</small></div></li>
             </ul>
+          </li>
+          <li>
+            <div class="node">Akash Rastapur<br><small>Web Developer</small></div>
           </li>
         </ul>
       </li>
